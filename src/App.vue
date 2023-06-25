@@ -5,8 +5,8 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
   <header class="navbar">
     <div class="nav">
-      <RouterLink to="/">Posts</RouterLink>
-      <RouterLink to="/authors"></RouterLink>
+      <RouterLink style="margin-right: 1rem" to="/">Posts</RouterLink>
+      <RouterLink to="/authors">Authors</RouterLink>
     </div>
   </header>
 
