@@ -1,0 +1,27 @@
+<script setup>
+import { RouterLink } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import { usePostStore } from '../stores/post'
+
+const { posts, loading, error } = storeToRefs(usePostStore())
+const { fetchPosts } = usePostStore()
+
+fetchPosts()
+</script>
+
+<template>
+  <main>
+    <p v-if="loading">Loading Posts...</p>
+    <p v-if="error">{{ error.message }}</p>
+    <div v-if="posts && !error">
+      <div v-for="post in posts" :key="post.id">
+        <RouterLink :to="`/post/${post.id}`">
+          <h3>
+            {{ post.title }}
+          </h3>
+        </RouterLink>
+        <p>{{ post.body }}</p>
+      </div>
+    </div>
+  </main>
+</template>

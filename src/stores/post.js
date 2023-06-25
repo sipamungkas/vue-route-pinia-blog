@@ -15,11 +15,11 @@ export const usePostStore = defineStore({
   },
   actions: {
     async fetchPosts() {
-      this.post = []
+      this.posts = []
       this.loading = true
       try {
         const response = await fetch('https://jsonplaceholder.typicode.com/posts')
-        const jsonResponse = response.json()
+        const jsonResponse = await response.json()
         this.posts = jsonResponse
       } catch (error) {
         this.error = error
@@ -32,8 +32,8 @@ export const usePostStore = defineStore({
       this.loading = true
       try {
         const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-        const jsonResponse = response.json()
-        this.posts = jsonResponse
+        const jsonResponse = await response.json()
+        this.post = jsonResponse
       } catch (error) {
         this.error = error
       } finally {
